@@ -10,7 +10,8 @@
   "scripts": {
     "prebuild": "rimraf dist && mkdir dist",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "yarn test --collect-coverage"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
