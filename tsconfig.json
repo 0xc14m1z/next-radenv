@@ -10,5 +10,10 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node"
   },
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts"]
+  "exclude": [
+    "jest.config.ts",
+    "gulpfile.js",
+    "src/**/*.spec.ts",
+    "src/designer/app/*"
+  ]
 }
