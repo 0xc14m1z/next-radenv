@@ -8,10 +8,15 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "rimraf dist && mkdir dist",
-    "build": "tsc",
+    "prepare": "mkdir dist",
+    "cleanup": "rimraf dist",
+    "prebuild": "yarn cleanup && yarn prepare",
+    "build:library": "tsc",
+    "build:designer": "parcel build src/designer/app/index.html -d dist/designer/app --no-source-maps",
+    "build": "yarn build:library && yarn build:designer",
     "test": "jest",
-    "test:coverage": "yarn test --collect-coverage"
+    "test:coverage": "yarn test --collect-coverage",
+    "start": "parcel src/designer/app/index.html"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
@@ -19,6 +24,7 @@
     "jest": "^26.6.3",
     "next": "^10.0.7",
     "node-mocks-http": "^1.10.1",
+    "parcel-bundler": "^1.12.4",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.5.2",
     "ts-node": "^9.1.1",
