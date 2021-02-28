@@ -11,6 +11,8 @@ describe("/radenv/designer", () => {
     jest.resetAllMocks();
   });
 
+  it.todo("respond with 404 when NOT in development mode");
+
   describe("GET /", () => {
     it("respond with the app bundle", () => {
       const { request, response } = createApiMocks();
