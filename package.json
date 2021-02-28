@@ -16,7 +16,8 @@
     "build": "yarn build:all && yarn build:cleanup",
     "test": "jest",
     "test:coverage": "yarn test --collect-coverage",
-    "start": "parcel src/designer/app/index.html"
+    "start:designer:frontend": "parcel src/designer/app/index.html -d .runtime/designer",
+    "start": "yarn start:designer:frontend"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
