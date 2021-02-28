@@ -1,17 +1,38 @@
 import FileSystem from "fs";
 import { RequestMethod } from "node-mocks-http";
 
+import { EnvironmentMock, createApiMocks } from "../testUtils";
+
 import { designer } from "./designer";
-import { createApiMocks } from "../testUtils";
 
 jest.spyOn(FileSystem, "readFileSync").mockReturnValue("application code");
 
 describe("/radenv/designer", () => {
+  const environment = new EnvironmentMock();
+
+  beforeEach(() => {
+    environment.mockVariable("NODE_ENV", "development");
+  });
+
   afterAll(() => {
+    environment.restore();
     jest.resetAllMocks();
   });
 
-  it.todo("respond with 404 when NOT in development mode");
+  it.each([
+    [200, "development"],
+    [404, "production"],
+    [404, "test"],
+    [404, "whatever"],
+  ])(
+    "respond with %s when NODE_ENV is %s",
+    (statusCode, testingEnvironment) => {
+      environment.mockVariableOnce("NODE_ENV", testingEnvironment);
+      const { request, response } = createApiMocks();
+      designer(request, response);
+      expect(response._getStatusCode()).toBe(statusCode);
+    }
+  );
 
   describe("GET /", () => {
     it("respond with the app bundle", () => {
