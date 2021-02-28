@@ -8,6 +8,7 @@
     "dist"
   ],
   "scripts": {
+    "postinstall": "cd src/designer/app && yarn install",
     "prebuild": "rimraf dist && mkdir dist",
     "build:library": "tsc",
     "build:designer": "parcel build src/designer/app/index.html -d dist/designer/app --no-source-maps",
