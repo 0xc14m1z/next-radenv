@@ -11,13 +11,13 @@
     "postinstall": "cd src/designer/app && yarn install",
     "prebuild": "rimraf dist && mkdir dist",
     "build:library": "tsc",
-    "build:designer": "parcel build src/designer/app/index.html -d dist/designer/app --no-source-maps",
+    "build:designer": "parcel build src/designer/app/src/index.html -d dist/designer/app --no-source-maps",
     "build:all": "yarn build:library && yarn build:designer",
     "build:cleanup": "gulp",
     "build": "yarn build:all && yarn build:cleanup",
     "test": "jest",
     "test:coverage": "yarn test --collect-coverage",
-    "start:designer:frontend": "parcel src/designer/app/index.html -d .runtime/designer",
+    "start:designer:frontend": "parcel src/designer/app/src/index.html -d .runtime/designer",
     "start": "yarn start:designer:frontend"
   },
   "devDependencies": {
